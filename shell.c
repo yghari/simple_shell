@@ -1,12 +1,14 @@
-#include "main.h"
+#include "shell.h"
 
 int	main(int ac, char **av, char **env)
 {
-  char	*str;
+  char *line = NULL;
+  size_t len = 0;
+  ssize_t read;
 
   while (1)
   {
-    str = readline("$_> ");
+    read = getline("$_> ");
   }
   return (0);
 }
