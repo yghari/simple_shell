@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html>
 <head>
 	<title>Simple Shell</title>
 </head>
@@ -14,3 +16,4 @@
 		<li>Displays a simple command prompt</li>
 	</ul>
 </body>
+</html>
