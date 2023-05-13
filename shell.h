@@ -9,5 +9,9 @@
 #include <sys/types.h>
 
 
+typedef struct token 
+{
+  const char *cmnd;
+}s_token; 
 
 #endif
