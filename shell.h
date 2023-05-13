@@ -7,11 +7,17 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 
+
+extern  char **environ;
 
 typedef struct token 
 {
   const char *cmnd;
-}s_token; 
+}s_token;
+
+void    prompt(void);
+char    **parse(char *token);
 
 #endif
