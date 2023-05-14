@@ -142,7 +142,6 @@ int execution(char **input, char *test)
   }
   else if (pid == 0) 
   {
-    // Child process
     execve(test, input, env);
     free(test);
     free_buff(input);
@@ -157,26 +156,41 @@ int main(int ac, char **av, char **env)
   char *str , *test = NULL;
   size_t buff = 0;
   ssize_t s_read;
+  int pokemon = 1;
   char **d_str = NULL;
   char **paths = NULL;
   char *g_path = NULL;
 
-  while (1)
+  while (pokemon)
   {
     free_buff(d_str);
     free_buff(paths);
-    //free(test);
     prompt();
+    fflush(stdout);
     s_read = getline(&str, &buff, stdin);
-    if (s_read < 0)
+    if (s_read == -1)
+    //if ((s_read = getline(&str, &buff, stdin)) == EOF) 
     {
-      printf("\n%s: getline error\n", av[0]);
-      break;
+        printf("\n");
+        perror("exit");
+        return -1;
     }
+    // if (s_read < 0)
+    // {
+      // if (s_read == EOF)
+      // {
+      //   perror("exit");
+      //   exit;
+      // }
+      // printf("%s:Bad file descriptor\n", av[0]);
+      // break;
+    // }
     if (str[s_read - 1] == '\n')
       str[s_read - 1] = '\0';
     g_path = bring_path("PATH");
     d_str = parse(str);
+    if (d_str == NULL || *d_str == NULL || **d_str == '\0')
+      continue;
     for (int i = 0; d_str[i] != NULL; i++)
         printf("\nd_str[%d]: %s\n", i, d_str[i]);
     paths = pathing(g_path);
@@ -184,7 +198,7 @@ int main(int ac, char **av, char **env)
     if (strcmp(d_str[0], "exit") == 0)
     {
       free(str);
-      free(d_str[0]);
+      //free(d_str[0]);
       //d_str[0] = NULL; // set to NULL after freeing
       free_buff(d_str);
       break;
@@ -194,7 +208,6 @@ int main(int ac, char **av, char **env)
     else
       execution(d_str, test);
   }
-
   
-  return 0;
+return (0);
 }
