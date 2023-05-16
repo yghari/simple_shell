@@ -9,7 +9,10 @@ char **parse(char *str)
 
     args = malloc(size * sizeof(char *));
     if (args == NULL)
-      return (NULL);
+    {
+        free(args);
+        return (NULL);
+    }
     to_ken = strtok(str, " \t\n");
     while (to_ken != NULL)
     {
@@ -23,6 +26,7 @@ char **parse(char *str)
         if (args == NULL)
         {
             free_buff(args);
+            free(args);
             return NULL;
         }
         to_ken = strtok(NULL, " \t\n");

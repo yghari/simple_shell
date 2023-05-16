@@ -22,8 +22,11 @@ char **pathing(char *str)
   
     paths = malloc(size * sizeof(char *));
     if (paths == NULL)
+    {
+        free(paths);
         return (NULL);
-  
+    }
+
     int i = 0;
     char *path;
     char *c_path;
@@ -39,7 +42,7 @@ char **pathing(char *str)
             if (paths == NULL)
             {
               free_buff(paths);
-              return NULL;
+              return (NULL);
             }
         }
         paths[i] = _strdup(path);

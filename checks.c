@@ -5,15 +5,17 @@ char *check_path(char **paths, char *input)
     char *path_cmd = NULL;
 
     if (access(input, F_OK | X_OK) == 0)
-        return strdup(input);
+        return _strdup(input);
     for (int i = 0; paths[i] != NULL; i++)
     {
         path_cmd = _strcat(paths[i], input);   
         if (access(path_cmd, F_OK | X_OK) == 0) 
         {
           return path_cmd;
+          
         }
         free(path_cmd);
     }
-    return NULL;
+    free_buff(paths);
+    return (NULL);
 }
