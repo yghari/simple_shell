@@ -22,7 +22,7 @@ char **pathing(char *str)
     char *path = NULL;
     char *c_path = NULL;
 
-    paths = malloc(sizeof(char *) * (length_of_paths(str) + 1));
+    paths = malloc(sizeof(char *) * (length_of_paths(str, DELIMITER1) + 1));
     if (!paths)
     {
         return (NULL);

@@ -9,17 +9,17 @@ int prompt(void)
   return (0);
 }
 
-int        length_of_paths(char *path)
+int        length_of_paths(char *path, char *del)
 {
     int        length;
     char        *line, *copied_path;
     length = 0;
     copied_path = strdup(path);
-    line = strtok(copied_path, DELIMITER1);
+    line = strtok(copied_path, del);
     while (line)
     {
         length++;
-        line = strtok(NULL, DELIMITER1);
+        line = strtok(NULL, del);
     }
     free(copied_path);
     return (length);
@@ -29,13 +29,15 @@ int magic(char *input, ssize_t size)
 {
   char *path_cmd = NULL, *g_path = NULL;
   char **d_str = NULL, **paths = NULL;
-  int exit_code;
+  int exit_code = 0;
 
   if (input[size - 1] == '\n')
       input[size - 1] = '\0'; 
   d_str = parse(input);
+
   if (d_str == NULL || *d_str == NULL || **d_str == '\0')
   {
+    free(input);
     free_buff(d_str);
     return (0);
   }
@@ -48,9 +50,10 @@ int magic(char *input, ssize_t size)
   }
   else if (strcmp(d_str[0], "cd") == 0)
   {
+    free(input);
     cd_cmd(d_str);
   }
-  g_path = strdup(bring_path("PATH"));
+  g_path = _strdup(bring_path("PATH"));
   if (!g_path)
   {
     free(g_path);
@@ -58,20 +61,38 @@ int magic(char *input, ssize_t size)
   }
   
   paths = pathing(g_path);
+  if (!paths)
+  {
+    free(g_path);
+    free(input);
+    free_buff(d_str);
+    return (-1);
+  }
   path_cmd = check_path(paths, d_str[0]);
   free_buff(paths);
+  //free(input);
   if (!path_cmd)
   {
-    perror("problem");
+    free(input);
+    free_buff(d_str);
+    free_buff(paths);
+    free(g_path);
+    printf("path_cmd ");
+    return (-1);
   }
-  else
-      exit_code = execution(d_str, path_cmd);
+  else if (exit_code == 0)
+  {
+    exit_code = execution(d_str, path_cmd);
+    free_buff(d_str);
+    //free_buff(paths);
+    free(g_path);
+    free(path_cmd);
+    return (0);
+  }
   printf("Hello world\n");
   //free(path_cmd);
   for (int i = 0; d_str[i] != NULL; i++)
         printf("\nd_str[%d]: %s\n", i, d_str[i]);
-  return (exit_code);
-
 }
 int main(int ac, char **av, char **env)
 {
@@ -96,11 +117,11 @@ int main(int ac, char **av, char **env)
     exit_code = magic(str, s_read);
     if (exit_code == -1)
     {
-      //free(str);
+      free(str);
       printf("exit\n");
       return (-1);
     }
   }
-  //free(str);
+  free(str);
   return (0);
 }

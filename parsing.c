@@ -7,7 +7,7 @@ char **parse(char *str)
     char *to_ken = NULL;
     int len = 0;
 
-    len = length_of_paths(str);
+    len = length_of_paths(str,DELIMITER2);
     args = malloc(sizeof(char *) * (len + 1));
     if (!args)
     {

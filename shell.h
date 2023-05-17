@@ -20,7 +20,7 @@ typedef struct token
   const char *cmnd;
 }s_token;
 
-int        length_of_paths(char *path);
+int        length_of_paths(char *path, char *del);
 int _strlen(char *s);
 int _strncmp(const char *s1, const char *s2, size_t n);
 char *_strdup(char *str);
