@@ -2,35 +2,29 @@
 
 char **parse(char *str)
 {
-    int size = 2;
-    char **args;
+    char **args = NULL;
     int a_i = 0;
-    char *to_ken;
+    char *to_ken = NULL;
+    int len = 0;
 
-    args = malloc(size * sizeof(char *));
-    if (args == NULL)
+    len = length_of_paths(str);
+    args = malloc(sizeof(char *) * (len + 1));
+    if (!args)
     {
-        free(args);
         return (NULL);
     }
-    to_ken = strtok(str, " \t\n");
-    while (to_ken != NULL)
+    args[len] = 0;
+    to_ken = strtok(str, DELIMITER2);
+    while (to_ken)
     {
         args[a_i] = _strdup(to_ken);
-        a_i++;
-        if (a_i == size) 
-        {
-            size *= 2;
-            args = realloc(args, size * sizeof(char *));
-        }
-        if (args == NULL)
+        if (!args[a_i]) 
         {
             free_buff(args);
-            free(args);
             return NULL;
         }
-        to_ken = strtok(NULL, " \t\n");
+        a_i++;
+        to_ken = strtok(NULL, DELIMITER2);
     }
-    args[a_i] = NULL;
     return (args);
 }

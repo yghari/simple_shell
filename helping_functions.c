@@ -7,9 +7,9 @@ char *_strcat(char *dest, char *src)
     int j = 0;
 
     hold = malloc(sizeof(char) * (_strlen(dest) + _strlen(src) + 2));
+   
     if (hold == NULL)
     {
-        free (hold);
         return (NULL);
     }
     while (dest[i])
@@ -26,7 +26,6 @@ char *_strcat(char *dest, char *src)
         j++;
     }
     hold[i] = '\0';
-    free(dest);
     return (hold);
 }
 

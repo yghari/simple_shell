@@ -9,14 +9,27 @@ int prompt(void)
   return (0);
 }
 
+int        length_of_paths(char *path)
+{
+    int        length;
+    char        *line, *copied_path;
+    length = 0;
+    copied_path = strdup(path);
+    line = strtok(copied_path, DELIMITER1);
+    while (line)
+    {
+        length++;
+        line = strtok(NULL, DELIMITER1);
+    }
+    free(copied_path);
+    return (length);
+}
+
 int magic(char *input, ssize_t size)
 {
   char *path_cmd = NULL, *g_path = NULL;
   char **d_str = NULL, **paths = NULL;
   int exit_code;
-
-  free_buff(paths);
-  free_buff(d_str);
 
   if (input[size - 1] == '\n')
       input[size - 1] = '\0'; 
@@ -30,28 +43,31 @@ int magic(char *input, ssize_t size)
   {
     free(input);
     free_buff(d_str);
-    free_buff(paths);
+    //free_buff(paths);
     return (-1);
   }
   else if (strcmp(d_str[0], "cd") == 0)
   {
     cd_cmd(d_str);
   }
-  g_path = bring_path("PATH");
-  if (g_path == NULL)
+  g_path = strdup(bring_path("PATH"));
+  if (!g_path)
   {
     free(g_path);
     return (-1);
   }
+  
   paths = pathing(g_path);
   path_cmd = check_path(paths, d_str[0]);
+  free_buff(paths);
   if (!path_cmd)
   {
     perror("problem");
   }
   else
       exit_code = execution(d_str, path_cmd);
-  free(path_cmd);
+  printf("Hello world\n");
+  //free(path_cmd);
   for (int i = 0; d_str[i] != NULL; i++)
         printf("\nd_str[%d]: %s\n", i, d_str[i]);
   return (exit_code);
@@ -77,8 +93,6 @@ int main(int ac, char **av, char **env)
       printf("exit\n");
       return (-1);
     }
-    if (str[s_read - 1] == '\n')
-      str[s_read - 1] = '\0'; 
     exit_code = magic(str, s_read);
     if (exit_code == -1)
     {
@@ -87,6 +101,6 @@ int main(int ac, char **av, char **env)
       return (-1);
     }
   }
-  free(str);
+  //free(str);
   return (0);
 }

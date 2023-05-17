@@ -10,6 +10,9 @@
 #include <sys/wait.h>
 #include <errno.h>
 
+#define DELIMITER1 ":"
+#define DELIMITER2 " \t\n"
+
 extern  char **environ;
 
 typedef struct token 
@@ -17,6 +20,7 @@ typedef struct token
   const char *cmnd;
 }s_token;
 
+int        length_of_paths(char *path);
 int _strlen(char *s);
 int _strncmp(const char *s1, const char *s2, size_t n);
 char *_strdup(char *str);

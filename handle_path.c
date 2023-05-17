@@ -6,52 +6,39 @@ char *bring_path(char *path)
 
     for (char **env = environ; *env != NULL; env++)
     {
-        if (_strncmp(*env, path, path_len) == 0 && *(*env + path_len) == '=') {
+        if (_strncmp(*env, path, path_len) == 0 && *(*env + path_len) == '=') 
+        {
             return (*env + path_len + 1);
         }
     }
     printf("path not found\n");
-  
     return (NULL);
 }
 
 char **pathing(char *str)
 {
-    int size = 2;
     char **paths = NULL;
-  
-    paths = malloc(size * sizeof(char *));
-    if (paths == NULL)
+    int i = 0;
+    char *path = NULL;
+    char *c_path = NULL;
+
+    paths = malloc(sizeof(char *) * (length_of_paths(str) + 1));
+    if (!paths)
     {
-        free(paths);
         return (NULL);
     }
-
-    int i = 0;
-    char *path;
-    char *c_path;
-  
-    c_path = _strdup(str);
-    path = strtok(c_path, ":");
-    while (path != NULL)
+    path = strtok(str, DELIMITER1);
+    while (path)
     {
-        if (i == size - 1)
-        {
-            size *= 2;
-            paths = realloc(paths, size * sizeof(char *));    
-            if (paths == NULL)
-            {
-              free_buff(paths);
-              return (NULL);
-            }
-        }
         paths[i] = _strdup(path);
-        if (paths[i] == NULL)
+        if (!paths[i])
+        {
+            free_buff(paths);
             return (NULL);
+        }
         i++;
-        path = strtok(NULL, ":");
+        path = strtok(NULL, DELIMITER1);
     }
-    paths[i] = NULL;
-    free(c_path);
+    paths[i] = 0;
     return (paths);
 }
