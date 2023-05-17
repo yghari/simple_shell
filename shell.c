@@ -33,6 +33,10 @@ int magic(char *input, ssize_t size)
     free_buff(paths);
     return (-1);
   }
+  else if (strcmp(d_str[0], "cd") == 0)
+  {
+    cd_cmd(d_str);
+  }
   g_path = bring_path("PATH");
   if (g_path == NULL)
   {

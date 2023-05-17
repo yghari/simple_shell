@@ -29,5 +29,6 @@ char **pathing(char *str);
 char *check_path(char **paths, char *input);
 int execution(char **input, char *test);
 int magic(char *input, ssize_t size);
+void  cd_cmd(char **input);
 
 #endif
