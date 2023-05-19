@@ -32,7 +32,8 @@ char *bring_path(char *path);
 char **pathing(char *str);
 char *check_path(char **paths, char *input);
 int execution(char **input, char *test);
-int magic(char *input, ssize_t size);
+int magic(char *input, ssize_t size, char **d_str);
 void  cd_cmd(char **input);
+int handle_builtins(char **d_str);
 
 #endif
