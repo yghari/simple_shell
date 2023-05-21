@@ -15,30 +15,18 @@ char *bring_path(char *path)
     return (NULL);
 }
 
-char **pathing(char *str)
+int        length_of_paths(char *path, char *del)
 {
-    char **paths = NULL;
-    int i = 0;
-    char *path = NULL;
-    char *c_path = NULL;
-
-    paths = malloc(sizeof(char *) * (length_of_paths(str, DELIMITER1) + 1));
-    if (!paths)
+    int        length;
+    char        *line, *copied_path;
+    length = 0;
+    copied_path = strdup(path);
+    line = strtok(copied_path, del);
+    while (line)
     {
-        return (NULL);
+        length++;
+        line = strtok(NULL, del);
     }
-    path = strtok(str, DELIMITER1);
-    while (path)
-    {
-        paths[i] = _strdup(path);
-        if (!paths[i])
-        {
-            free_buff(paths);
-            return (NULL);
-        }
-        i++;
-        path = strtok(NULL, DELIMITER1);
-    }
-    paths[i] = 0;
-    return (paths);
+    free(copied_path);
+    return (length);
 }

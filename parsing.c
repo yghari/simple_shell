@@ -1,20 +1,18 @@
 #include "shell.h"
 
-char **parse(char *str)
+char **parse(char *str , char *del)
 {
     char **args = NULL;
     int a_i = 0;
     char *to_ken = NULL;
     int len = 0;
 
-    len = length_of_paths(str,DELIMITER2);
+    len = length_of_paths(str,del);
     args = malloc(sizeof(char *) * (len + 1));
     if (!args)
-    {
         return (NULL);
-    }
     args[len] = 0;
-    to_ken = strtok(str, DELIMITER2);
+    to_ken = strtok(str, del);
     while (to_ken)
     {
         args[a_i] = _strdup(to_ken);
@@ -24,7 +22,7 @@ char **parse(char *str)
             return NULL;
         }
         a_i++;
-        to_ken = strtok(NULL, DELIMITER2);
+        to_ken = strtok(NULL, del);
     }
     return (args);
 }

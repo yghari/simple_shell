@@ -13,9 +13,7 @@ void  cd_cmd(char **input)
         perror("getcwd() error");
         return;
     }
-
     old_pwd = current_dir;
-
     if (input[1] == NULL)
     {
         if (chdir(bring_path("HOME")) != 0)
@@ -30,17 +28,12 @@ void  cd_cmd(char **input)
             perror("chdir() error");
         }
     }
-
     cur_pwd = getcwd(NULL, 0);
-
     if (cur_pwd == NULL)
     {
         perror("getcwd() error");
         return;
     }
-
     printf("Current directory: %s\n", cur_pwd);
 
-    //free(current_dir);
-    //free(cur_pwd);
 }

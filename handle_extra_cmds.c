@@ -2,15 +2,23 @@
 
 int handle_builtins(char **d_str)
 {
-  if (strcmp(d_str[0], "exit") == 0)
+  t_builti cmd = {"exit" , "cd" , "env"};
+
+  if (strcmp(d_str[0], cmd.exit) == 0)
   {
     free_buff(d_str);
-    //free_buff(paths);
     exit (0);
   }
-  else if (strcmp(d_str[0], "cd") == 0)
+  else if (strcmp(d_str[0], cmd.c_d) == 0)
   {
-    //free(input);
     cd_cmd(d_str);
+    return (0);
   }
+  else if (strcmp(d_str[0], cmd.en_v) == 0)
+  {
+    env_cmd();
+    return (0);
+  }
+  // free_buff(d_str);
+  return (1);
 }
