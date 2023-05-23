@@ -1,5 +1,8 @@
 #include "shell.h"
-
+/**
+ * handle_signal - Handles signal interrupt (SIGINT)
+ * @m: The signal number
+ */
 void handle_signal(int m)
 {
 	(void)m;

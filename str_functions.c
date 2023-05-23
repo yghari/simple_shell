@@ -1,32 +1,38 @@
 #include "shell.h"
-
+/**
+ * _strcat - Concatenates two strings with a '/' separator
+ * @dest: The destination string
+ * @src: The source string
+ *
+ * Return: A pointer to the concatenated string, or NULL on failure
+ */
 char *_strcat(char *dest, char *src)
 {
-    char *hold;
-    int i = 0;
-    int j = 0;
+	char *hold;
+	int i = 0;
+	int j = 0;
 
-    hold = malloc(sizeof(char) * (_strlen(dest) + _strlen(src) + 2));
-   
-    if (hold == NULL)
-    {
-        return (NULL);
-    }
-    while (dest[i])
-    {
-        hold[i] = dest[i];
-        i++;
-    }
-    hold[i] = '/';
-    i++;
-    while (src[j])
-    {
-        hold[i] = src[j];
-        i++;
-        j++;
-    }
-    hold[i] = '\0';
-    return (hold);
+	hold = malloc(sizeof(char) * (_strlen(dest) + _strlen(src) + 2));
+
+	if (hold == NULL)
+	{
+		return (NULL);
+	}
+	while (dest[i])
+	{
+		hold[i] = dest[i];
+		i++;
+	}
+	hold[i] = '/';
+	i++;
+	while (src[j])
+	{
+		hold[i] = src[j];
+		i++;
+		j++;
+	}
+	hold[i] = '\0';
+	return (hold);
 }
 
 /**
@@ -36,12 +42,13 @@ char *_strcat(char *dest, char *src)
  */
 int _strlen(char *s)
 {
-    int i = 0;
-    while (s[i] != '\0')
-    {
-        i++;
-    }
-    return (i);
+	int i = 0;
+
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
 }
 
 /**
@@ -54,16 +61,16 @@ int _strlen(char *s)
  */
 int _strncmp(const char *s1, const char *s2, size_t n)
 {
-    size_t i;
-  
-    for (i = 0; i < n; i++)
-    {
-        if (s1[i] == '\0' || s2[i] == '\0' || s1[i] != s2[i])
-        {
-            return (s1[i] - s2[i]);
-        }
-    }
-    return (0);
+	size_t i;
+
+	for (i = 0; i < n; i++)
+	{
+		if (s1[i] == '\0' || s2[i] == '\0' || s1[i] != s2[i])
+		{
+			return (s1[i] - s2[i]);
+		}
+	}
+	return (0);
 }
 
 /**
