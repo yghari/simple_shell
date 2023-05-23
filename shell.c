@@ -30,7 +30,6 @@ int main(int ac, char **av, char **env)
 
 	flag.intrctv = 0;
 	(void)av, (void)env;
-
 	if (ac < 1)
 		return (-1);
 	signal(SIGINT, handle_signal);
@@ -50,7 +49,11 @@ int main(int ac, char **av, char **env)
 		}
 		do_str = parse(str, DELIMITER2);
 		if (do_str[0] == NULL || handle_builtins(do_str) == 0)
+		{
+			free(str);
+			str = NULL;
 			continue;
+		}
 		else
 			magic(str, s_read, do_str);
 	}
