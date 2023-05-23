@@ -37,6 +37,7 @@ int magic(char *input, ssize_t size, char **d_str)
 	{
 		free_buff(d_str);
 		free(g_path);
+		free(path_cmd);
 		perror("Error: Command not found");
 		return (-1);
 	}
