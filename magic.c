@@ -10,7 +10,7 @@ int magic(char *input, ssize_t size, char **d_str)
 {
 	char *path_cmd = NULL, *g_path = NULL;
 	char **paths = NULL;
-	int exit_code = 0, i;
+	int exit_code = 0;
 
 	if (input[size - 1] == '\n')
 		input[size - 1] = '\0';
@@ -25,6 +25,7 @@ int magic(char *input, ssize_t size, char **d_str)
 	if (!g_path)
 	{
 		free(g_path);
+		perror("Error: Failed to duplicate path");
 		return (-1);
 	}
 	paths = parse(g_path, DELIMITER1);
@@ -36,16 +37,13 @@ int magic(char *input, ssize_t size, char **d_str)
 	{
 		free_buff(d_str);
 		free(g_path);
-		printf("%s: command not found \n", input);
+		perror("Error: Command not found");
 		return (-1);
 	}
 	else if (exit_code == 0)
 	{
 		exit_code = execution(d_str, path_cmd);
-		free_buff(d_str);
-		free(g_path);
-		free(path_cmd);
-		return (0);
+		free_cmd(d_str, g_path, path_cmd);
 	}
 	return (0);
 }

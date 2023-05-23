@@ -6,7 +6,6 @@
 void  cd_cmd(char **input)
 {
 	char *current_dir = NULL;
-	char *old_pwd = NULL;
 	char *cur_pwd = NULL;
 
 	current_dir = getcwd(NULL, 0);
@@ -16,7 +15,6 @@ void  cd_cmd(char **input)
 		perror("getcwd() error");
 		return;
 	}
-	old_pwd = current_dir;
 	if (input[1] == NULL)
 	{
 		if (chdir(bring_path("HOME")) != 0)

@@ -18,7 +18,7 @@ char *bring_path(char *path)
 			return (*env + path_len + 1);
 		}
 	}
-	printf("path not found\n");
+	_putstring("path not found\n");
 	return (NULL);
 }
 /**

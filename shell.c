@@ -4,7 +4,7 @@
  * @intrctv: Flag indicating whether the shell is interactive
  * Return: prompt
  */
-int prompt(bool intrctv)
+void prompt(bool intrctv)
 {
 	if ((isatty(STDIN_FILENO) == 1) && (isatty(STDOUT_FILENO) == 1))
 		intrctv = 1;
@@ -23,10 +23,12 @@ int main(int ac, char **av, char **env)
 {
 	t_flags flag;
 	size_t buff = 0;
-	ssize_t s_read = 0, exit_code = 0;
+	ssize_t s_read = 0;
 	int pokemon = 1;
 	char *str = NULL;
 	char **do_str = NULL;
+
+	flag.intrctv = 0;
 	(void)av, (void)env;
 
 	if (ac < 1)

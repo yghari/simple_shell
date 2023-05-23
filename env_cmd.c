@@ -13,7 +13,7 @@ void env_cmd(void)
 {
 	char **env = environ;
 
-	while(*env)
+	while (*env)
 	{
 		printf("%s\n", *env++);
 	}

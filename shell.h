@@ -60,14 +60,14 @@ typedef struct t_flags
 
 void handle_signal(int m);
 void env_cmd(void);
-int        length_of_paths(char *path, char *del);
+int length_of_paths(char *path, char *del);
 int _strlen(char *s);
 int _strncmp(const char *s1, const char *s2, size_t n);
 char *_strdup(char *str);
 char *_strcat(char *dest, char *src);
 void free_buff(char **buf);
 char **parse(char *str, char *del);
-int    prompt(bool flag);
+void prompt(bool flag);
 char *bring_path(char *path);
 char *check_path(char **paths, char *input);
 int execution(char **input, char *test);
@@ -75,6 +75,8 @@ int magic(char *input, ssize_t size, char **d_str);
 void  cd_cmd(char **input);
 int handle_builtins(char **d_str);
 int free_path (char *path, char *input, char **str);
-
+int _putstring(char *s);
+int _putchar(char c);
+int free_cmd(char **d_str, char *g_path, char *path_cmd);
 
 #endif
