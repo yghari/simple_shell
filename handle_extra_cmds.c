@@ -13,7 +13,7 @@ int handle_builtins(char **d_str, char *str)
 	{
 		free_buff(d_str);
 		free(str);
-		_fprint(1, "exit\n");
+		_fprint(2, "exit\n");
 		exit(0);
 	}
 	else if (strcmp(d_str[0], cmd.c_d) == 0)
