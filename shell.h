@@ -73,7 +73,7 @@ char *check_path(char **paths, char *input);
 int execution(char **input, char *test);
 int magic(char *input, ssize_t size, char **d_str);
 void  cd_cmd(char **input);
-int handle_builtins(char **d_str);
+int handle_builtins(char **d_str, char *str);
 int free_path(char *path, char *input, char **str);
 int _putstring(char *s);
 int _putchar(char c);
