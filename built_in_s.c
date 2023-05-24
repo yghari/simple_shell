@@ -35,6 +35,5 @@ void  cd_cmd(char **input)
 		perror("getcwd() error");
 		return;
 	}
-	printf("Current directory: %s\n", cur_pwd);
-
+	free(cur_pwd);
 }

@@ -59,7 +59,7 @@ typedef struct t_flags
 } t_flags;
 
 void handle_signal(int m);
-void env_cmd(void);
+int env_cmd(void);
 int length_of_paths(char *path, char *del);
 int _strlen(char *s);
 int _strncmp(const char *s1, const char *s2, size_t n);
@@ -74,9 +74,12 @@ int execution(char **input, char *test);
 int magic(char *input, ssize_t size, char **d_str);
 void  cd_cmd(char **input);
 int handle_builtins(char **d_str);
-int free_path (char *path, char *input, char **str);
+int free_path(char *path, char *input, char **str);
 int _putstring(char *s);
 int _putchar(char c);
 int free_cmd(char **d_str, char *g_path, char *path_cmd);
-
+int _fput_helper(int fd, int number);
+int _fputnumber(int fd, int number);
+int _fputs(int fd, const char *s);
+int _fprint(int fd, const char *format, ...);
 #endif
