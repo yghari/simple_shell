@@ -60,10 +60,11 @@ int _fputs(int fd, char *s)
 }
 
 /**
- * _fprint - function that allows printing numbers and strings using format specifiers
- *
+ * _fprint - function that allows printing numbers and
+ * strings using format specifiers
  * @fd: file descriptor
- * @format: format to be printed to given fd and change placeholder to specific values
+ * @format: format to be printed to given fd and change
+ * placeholder to specific values
  * Return: number of printed characters
  */
 int _fprint(int fd, const char *format, ...)
