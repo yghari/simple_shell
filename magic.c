@@ -46,5 +46,5 @@ int magic(char *input, ssize_t size, char **d_str)
 		exit_code = execution(d_str, path_cmd);
 		free_cmd(d_str, g_path, path_cmd);
 	}
-	return (0);
+	return (exit_code);
 }
