@@ -1,10 +1,9 @@
 #include "shell.h"
+
 /**
- * _fput_helper - function helps to
- * print number
+ * _fput_helper - helper function to print a number
  *
- * @fd: file descriptor of the file that
- * the given number will be printed in
+ * @fd: file descriptor to print to
  * @number: number to be printed
  * Return: number of printed digits
  */
@@ -22,91 +21,89 @@ int _fput_helper(int fd, int number)
 }
 
 /**
- * _fputnumber - function that print
- * given number into given file
+ * _fputnumber - function that prints a number to a file descriptor
  *
  * @fd: file descriptor
- * @number: to be printed
- * Return: the length of the printed
- * characters
+ * @number: number to be printed
+ * Return: the length of the printed characters
  */
 int _fputnumber(int fd, int number)
 {
-	int printed;
+	int printed = 0;
 
-	printed = 0;
 	if (!number)
 	{
 		write(fd, "0", 1);
 		return (1);
 	}
+
 	if (number < 0)
 	{
 		write(fd, "-", 1);
 		printed = 1;
 		number *= -1;
 	}
+
 	return (printed + _fput_helper(fd, number));
 }
 
 /**
- * _fputs - function that prints string
- * into given file descriptor
+ * _fputs - function that prints a string to a file descriptor
  *
  * @fd: file descriptor
  * @s: string to be printed
- * Return: number of character printed
+ * Return: number of characters printed
  */
-int _fputs(int fd, const char *s)
+int _fputs(int fd, char *s)
 {
-	return (write(fd, s, strlen(s)));
+	return (write(fd, s, _strlen(s)));
 }
 
 /**
- * _fprint - function that allows to
- * to print number and string using
- * format specifiers
- *
+ * _fprint - function that allows printing numbers and strings using format specifiers
  *
  * @fd: file descriptor
- * @format: format to be printed to given fd
- * and change place holder to specific values
+ * @format: format to be printed to given fd and change placeholder to specific values
  * Return: number of printed characters
  */
 int _fprint(int fd, const char *format, ...)
 {
 	va_list ap;
-	int i, printed;
-	int is_percent;
+	int i, printed = 0;
+	int is_percent = 0;
 
 	va_start(ap, format);
-	is_percent = 0;
-	i = 0;
-	printed = 0;
-	while (format[i])
+
+	for (i = 0; format[i]; i++)
 	{
 		if (format[i] == '%')
 			is_percent = 1;
+
 		else
 		{
 			if (is_percent)
 			{
 				if (format[i] == 'd')
 					printed += _fputnumber(fd, va_arg(ap, int));
+
 				else if (format[i] == 's')
 					printed += _fputs(fd, va_arg(ap, char *));
+
 				else
 					printed += write(fd, &format[i - 1], 2);
 			}
+
 			else
-				printed += write(fd, format + i, 1);
+				printed += write(fd, &format[i], 1);
+
 			is_percent = 0;
 		}
-		i++;
 	}
+
 	va_end(ap);
 	return (printed);
 }
+
 /**
  * env_cmd - Prints the environment variables
  *
@@ -116,18 +113,20 @@ int _fprint(int fd, const char *format, ...)
  * environment variables using a while loop and prints each variable
  * using the fprintf() function. The loop terminates when it reaches the
  * end of the environment variables, which is indicated by a NULL pointer.
- * Return: chi l3ba of printed characters
+ *
+ * Return: number of printed characters
  */
 int env_cmd(void)
 {
-	char **env;
+	char **env = environ;
 
-	env = environ;
 	if (!env)
 		return (1);
+
 	while (*env)
 	{
 		_fprint(1, "%s\n", *env++);
 	}
+
 	return (0);
 }

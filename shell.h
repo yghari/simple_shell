@@ -80,6 +80,6 @@ int _putchar(char c);
 int free_cmd(char **d_str, char *g_path, char *path_cmd);
 int _fput_helper(int fd, int number);
 int _fputnumber(int fd, int number);
-int _fputs(int fd, const char *s);
+int _fputs(int fd, char *s);
 int _fprint(int fd, const char *format, ...);
 #endif
