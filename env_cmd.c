@@ -15,7 +15,7 @@ int _fput_helper(int fd, int number)
 
 	if (number == 0)
 		return (0);
-	ret = _fput_number_helper(fd, number / 10);
+	ret = _fput_helper(fd, number / 10);
 	c = number % 10 + 48;
 	write(fd, &c, 1);
 	return (1 + ret);
@@ -59,7 +59,7 @@ int _fputnumber(int fd, int number)
  */
 int _fputs(int fd, const char *s)
 {
-	return (write(fd, s, _strlen(s)));
+	return (write(fd, s, strlen(s)));
 }
 
 /**
@@ -127,7 +127,7 @@ int env_cmd(void)
 		return (1);
 	while (*env)
 	{
-		_fprintf(1, "%s\n", *env++);
+		_fprint(1, "%s\n", *env++);
 	}
 	return (0);
 }
