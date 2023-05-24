@@ -12,7 +12,7 @@ int handle_builtins(char **d_str)
 	if (strcmp(d_str[0], cmd.exit) == 0)
 	{
 		free_buff(d_str);
-		_fprint(1,"exit\n");
+		_fprint(1, "exit\n");
 		exit(0);
 	}
 	else if (strcmp(d_str[0], cmd.c_d) == 0)
