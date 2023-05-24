@@ -13,7 +13,7 @@ int handle_builtins(char **d_str)
 	{
 		free_buff(d_str);
 		_fprint(1, "exit\n");
-		exit(0);
+		exit(exit_status(0, 0));
 	}
 	else if (strcmp(d_str[0], cmd.c_d) == 0)
 	{
@@ -25,5 +25,5 @@ int handle_builtins(char **d_str)
 		env_cmd();
 		return (0);
 	}
-	return (1);
+	return (exit_status(1, 1));
 }

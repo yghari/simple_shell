@@ -21,8 +21,17 @@ int execution(char **input, char *test)
 	else if (pid == 0)
 	{
 		execve(test, input, env);
+		perror("execve");
+		exit(127);
 	}
 	else
+	{
 		wait(&status);
+		if (WIFEXITED(status))
+			exit_status(1, WEXITSTATUS(status));
+		else
+			exit_status(1, 1);
+	}
+
 	return (1);
 }

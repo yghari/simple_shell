@@ -82,4 +82,5 @@ int _fput_helper(int fd, int number);
 int _fputnumber(int fd, int number);
 int _fputs(int fd, char *s);
 int _fprint(int fd, const char *format, ...);
+int exit_status(int update, int n_status);
 #endif
