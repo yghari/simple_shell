@@ -22,15 +22,10 @@ int magic(char *input, ssize_t size, char **d_str)
 		return (0);
 	}
 	g_path = _strdup(bring_path("PATH"));
-	if (!g_path)
-	{
-		free(g_path);
-		perror("Error: Failed to duplicate path");
-		return (-1);
-	}
-	paths = parse(g_path, DELIMITER1);
-	if (!paths)
-		free_path(g_path, input, d_str);
+	if (g_path)
+		paths = parse(g_path, DELIMITER1);
+	else 
+		paths = NULL;
 	path_cmd = check_path(paths, d_str[0]);
 	free_buff(paths);
 	if (!path_cmd)
