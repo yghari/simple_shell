@@ -12,6 +12,7 @@
 #include <time.h>
 #include <stdbool.h>
 #include <signal.h>
+#include <errno.h>
 
 #define DELIMITER1 ":"
 #define DELIMITER2 " \t\n"

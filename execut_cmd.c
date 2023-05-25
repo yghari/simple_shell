@@ -22,7 +22,9 @@ int execution(char **input, char *test)
 	{
 		execve(test, input, env);
 		perror("execve");
-		exit(127);
+		if (errno == EACCES)
+			exit(126);
+		exit(errno);
 	}
 	else
 	{

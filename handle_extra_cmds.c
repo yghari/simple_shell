@@ -26,5 +26,5 @@ int handle_builtins(char **d_str, char *str)
 		env_cmd();
 		return (0);
 	}
-	return (exit_status(1, 1));
+	return (1);
 }

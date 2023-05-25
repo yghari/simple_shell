@@ -22,7 +22,7 @@ char *check_path(char **paths, char *input)
 		{
 			return (path_cmd);
 		}
+		free(path_cmd);
 	}
-	free(path_cmd);
 	return (NULL);
 }

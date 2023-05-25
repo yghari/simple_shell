@@ -22,8 +22,7 @@ void prompt(bool intrctv)
 int main(int ac, char **av, char **env)
 {
 	t_flags flag;
-	size_t buff = 0;
-	ssize_t s_read = 0;
+	size_t buff = 0, s_read = 0;
 	int pokemon = 1;
 	char *str = NULL;
 	char **do_str = NULL;
@@ -51,6 +50,7 @@ int main(int ac, char **av, char **env)
 		if (do_str[0] == NULL || handle_builtins(do_str, str) == 0)
 		{
 			free(str);
+			free_buff(do_str);
 			str = NULL;
 			continue;
 		}
@@ -60,5 +60,5 @@ int main(int ac, char **av, char **env)
 	if (s_read < 0 && flag.intrctv)
 		write(STDERR_FILENO, "\n", 1);
 	free(str);
-	return (0);
+	return (exit_status(0, 0));
 }

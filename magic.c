@@ -39,6 +39,7 @@ int magic(char *input, ssize_t size, char **d_str)
 		free(g_path);
 		free(path_cmd);
 		perror("Error: Command not found");
+		exit_status(1, 127);
 		return (-1);
 	}
 	else if (exit_code == 0)
