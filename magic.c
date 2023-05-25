@@ -24,7 +24,7 @@ int magic(char *input, ssize_t size, char **d_str)
 	g_path = _strdup(bring_path("PATH"));
 	if (g_path)
 		paths = parse(g_path, DELIMITER1);
-	else 
+	else
 		paths = NULL;
 	path_cmd = check_path(paths, d_str[0]);
 	free_buff(paths);
