@@ -18,7 +18,7 @@ char **parse(char *str, char *del)
 	args = malloc(sizeof(char *) * (len + 1));
 	if (!args)
 		return (NULL);
-	args[len] = 0;
+	args[len] = NULL;
 	to_ken = strtok(str, del);
 	while (to_ken)
 	{
