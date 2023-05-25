@@ -22,8 +22,8 @@ void prompt(bool intrctv)
 int main(int ac, char **av, char **env)
 {
 	t_flags flag;
-	size_t buff = 0, s_read = 0;
-	int pokemon = 1;
+	size_t buff = 0; 
+	int pokemon = 1, s_read = 0;
 	char *str = NULL;
 	char **do_str = NULL;
 
