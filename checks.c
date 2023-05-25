@@ -11,7 +11,7 @@ char *check_path(char **paths, char *input)
 	char *path_cmd = NULL;
 	int i;
 
-	if (access(input, F_OK | X_OK) == 0)
+	if ((input[0] ==  '.' || input[0] == '/') && access(input, F_OK | X_OK) == 0)
 		return (_strdup(input));
 
 	for (i = 0; paths[i] != NULL; i++)
