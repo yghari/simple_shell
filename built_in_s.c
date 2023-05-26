@@ -10,12 +10,12 @@ void  cd_cmd(char **input)
 
 	current_dir = getcwd(NULL, 0);
 
-	if (current_dir == NULL)
+	if (!current_dir)
 	{
 		perror("getcwd() error");
 		return;
 	}
-	if (input[1] == NULL)
+	if (!input[1])
 	{
 		if (chdir(bring_path("HOME")) != 0)
 		{
@@ -30,7 +30,7 @@ void  cd_cmd(char **input)
 		}
 	}
 	cur_pwd = getcwd(NULL, 0);
-	if (cur_pwd == NULL)
+	if (!cur_pwd)
 	{
 		perror("getcwd() error");
 		return;

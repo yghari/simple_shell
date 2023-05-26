@@ -19,16 +19,7 @@
 
 extern  char **environ;
 extern __sighandler_t signal(int __sig, __sighandler_t __handler);
-/**
- * struct token - Structure for a token
- * @cmnd: The command string
- *
- * Description: This structure represents a token containing a command string.
- */
-typedef struct token
-{
-	const char *cmnd;
-} s_token;
+
 /**
  * struct t_builti - Structure for built-in commands
  * @exit: The "exit" command

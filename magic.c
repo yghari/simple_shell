@@ -15,7 +15,7 @@ int magic(char *input, ssize_t size, char **d_str)
 	if (input[size - 1] == '\n')
 		input[size - 1] = '\0';
 
-	if (d_str == NULL || *d_str == NULL || **d_str == '\0')
+	if (!d_str || !*d_str || !**d_str)
 	{
 		free(input);
 		free_buff(d_str);

@@ -47,7 +47,7 @@ int main(int ac, char **av, char **env)
 			continue;
 		}
 		do_str = parse(str, DELIMITER2);
-		if (do_str[0] == NULL || handle_builtins(do_str, str) == 0)
+		if (!do_str[0] || !handle_builtins(do_str, str))
 		{
 			free(str);
 			free_buff(do_str);

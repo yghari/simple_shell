@@ -7,7 +7,7 @@ void free_buff(char **buf)
 {
 	int i = 0;
 
-	if (buf == NULL)
+	if (!buf)
 		return;
 	while (buf[i])
 	{
