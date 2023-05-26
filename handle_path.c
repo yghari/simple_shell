@@ -29,17 +29,17 @@ char *bring_path(char *path)
  */
 int length_of_paths(char *path, char *del)
 {
-	int length;
+	int len;
 	char *line, *copied_path;
 
-	length = 0;
+	len = 0;
 	copied_path = strdup(path);
 	line = strtok(copied_path, del);
 	while (line)
 	{
-		length++;
+		len++;
 		line = strtok(NULL, del);
 	}
 	free(copied_path);
-	return (length);
+	return (len);
 }
